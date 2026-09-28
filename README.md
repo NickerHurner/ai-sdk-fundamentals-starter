@@ -1,150 +1,49 @@
-# Vercel AI SDK Tutorial - Starter Project
+# AI SDK Tutorial (Android)
 
-This is the starter project for the [Vercel AI SDK Academy Course](https://vercel.com/academy/ai-sdk), a comprehensive tutorial for building AI-powered applications using the Vercel AI SDK.
+A modern Android application rewrite of the [Vercel AI SDK Tutorial Course](https://vercel.com/academy/ai-sdk), implemented with Kotlin, Jetpack Compose, Material 3, and Gemini API.
 
-## About the Course
+## Features & Lessons Ported
 
-The Vercel AI SDK is a free, open-source library for building AI-powered products. Created by Vercel, it enables developers to quickly integrate AI features into their projects.
+This application showcases the core patterns of building AI-native mobile applications:
 
-### What You'll Learn
+### 1. Structured Extraction (Lesson 1)
+- Extracts structured schemas and core arguments from Paul Graham's essay on *Founder Mode*.
+- Compares Founder Mode vs Manager Mode characteristics side-by-side.
+- Extracts key takeaways and notable quotations with one tap.
 
-This 12-hour course is divided into three sections:
+### 2. Classification & Triage (Lesson 2)
+- Categorizes customer support requests into domain-specific categories (`billing`, `product_issues`, `enterprise_sales`, `account_issues`, `product_feedback`).
+- Estimates triage urgency/priority levels (`urgent`, `high`, `medium`, `low`).
+- Suggests automated response drafts for customer success agents.
+- Category filtering and custom request classification.
 
-- **Foundations**: Understand LLMs, prompting techniques, and basic AI SDK usage
-- **Invisible AI**: Build seamless AI features like classification and summarization
-- **Conversational AI**: Create interactive chatbots with advanced features
+### 3. Conversation Summarization (Lesson 3)
+- Real-time discussion thread view with avatars and timestamps.
+- AI summarization that condenses multi-person stakeholder discussions into structured `SummaryCard` components (Headline, Context, Key Discussion Points, Actionable Takeaways).
+- Interactive comment thread with reply, like, and dislike support.
 
-## Prerequisites
+### 4. Natural Language Calendar Extraction (Lesson 4)
+- Parses natural conversational sentences into structured `AppointmentDetails`.
+- Extracts event title, date, start/end time, location, and attendee list with company email addresses.
+- Renders calendar appointment cards with participant avatars and map markers.
 
-- JavaScript/TypeScript knowledge
-- React familiarity
-- Node.js v20 or later (LTS recommended)
-- pnpm package manager
-- Vercel account (free)
+### 5. Chatbot with Tool Calling (Lesson 5)
+- Interactive conversational AI assistant.
+- Real-time tool execution: detects weather queries and triggers local tool invocation to render live weather widgets (city, temperature, condition icons, and humidity).
 
-## Getting Started
+## Architecture & Tech Stack
 
-### 1. Clone the Repository
+- **UI Framework:** Jetpack Compose with Material Design 3 (M3)
+- **Language:** Kotlin 2.1
+- **Networking:** Retrofit 2 + OkHttp 4
+- **Serialization:** kotlinx.serialization JSON
+- **AI Engine:** Google Gemini API (`gemini-3.5-flash`) with structured JSON schema responses and intelligent offline fallback
+- **Navigation:** Navigation Compose
+- **Design:** Custom adaptive app icon, Material You dynamic theming, edge-to-edge layout
 
+## Configuration
+
+Set your Gemini API key in `.env` or through the AI Studio Secrets panel:
 ```bash
-git clone https://github.com/vercel/ai-sdk-fundamentals-starter.git
-cd ai-sdk-fundamentals-starter
+GEMINI_API_KEY=your_key_here
 ```
-
-### 2. Install Dependencies
-
-```bash
-pnpm install
-```
-
-### 3. Set Up Vercel AI Gateway
-
-This project uses [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) for unified AI model access with built-in reliability, monitoring, and load balancing.
-
-#### Link Your Project to Vercel
-
-```bash
-pnpm install -g vercel
-vercel link
-```
-
-#### Deploy and Pull Environment Variables
-
-```bash
-vercel deploy
-vercel env pull
-```
-
-This will create a `.env.local` file with your `VERCEL_OIDC_TOKEN` which is valid for 12 hours.
-
-#### Configure AI Provider Keys
-
-1. Go to your [Vercel Dashboard](https://vercel.com/dashboard)
-2. Navigate to AI Gateway → Integrations
-3. Add your AI provider API keys (e.g., OpenAI, Anthropic)
-4. Keys are securely stored and scoped to your Vercel team
-
-### 4. Run the Development Server
-
-```bash
-# Use Vercel CLI for automatic OIDC token refresh
-vercel dev
-
-# Or use standard Next.js dev (manual token refresh required)
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see the tutorial navigation page.
-
-## Available Lessons
-
-This starter includes code for all course lessons:
-
-### Command-Line Lessons
-
-Run these lessons using the provided npm scripts:
-
-- **Lesson 1: Extraction** - Extract structured data from text
-
-  ```bash
-  pnpm run extraction
-  ```
-
-- **Lesson 2: Classification** - Classify support requests
-  ```bash
-  pnpm run classification
-  ```
-
-### Interactive Lessons
-
-Access these through the web interface at [http://localhost:3000](http://localhost:3000):
-
-- **Lesson 3: Summarization** - Summarize message conversations
-- **Lesson 4: Extraction (Advanced)** - Extract calendar appointments from emails
-- **Lesson 5: Chatbot** - Build an interactive AI chatbot
-
-## Project Structure
-
-```
-├── app/
-│   ├── (1-extraction)/        # CLI extraction lesson
-│   ├── (2-classification)/    # CLI classification lesson
-│   ├── (3-summarization)/     # Web summarization lesson
-│   ├── (4-extraction)/        # Web extraction lesson
-│   ├── (5-chatbot)/          # Web chatbot lesson
-│   └── page.tsx              # Navigation homepage
-├── components/ui/            # Reusable UI components
-└── lib/                      # Utility functions
-```
-
-## About Vercel AI Gateway
-
-Vercel AI Gateway provides:
-
-- **Unified API** - Switch between AI providers without code changes
-- **High Reliability** - Automatic request retries and failover
-- **Monitoring** - Track usage and spending across providers
-- **Security** - Securely manage API keys at the team level
-- **Load Balancing** - Distribute requests across multiple providers
-
-## Technologies Used
-
-- [Next.js 15](https://nextjs.org) - React framework
-- [Vercel AI SDK](https://sdk.vercel.ai) - AI integration library
-- [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) - AI proxy service
-- [Tailwind CSS v4](https://tailwindcss.com) - Styling
-- [shadcn/ui](https://ui.shadcn.com) - UI components
-- [TypeScript](https://www.typescriptlang.org) - Type safety
-
-## Learn More
-
-- [Full Tutorial](https://vercel.com/academy/ai-sdk) - Complete the entire AI SDK course
-- [AI SDK Documentation](https://sdk.vercel.ai/docs) - Detailed SDK documentation
-- [Vercel AI Gateway Docs](https://vercel.com/docs/ai-gateway) - Gateway documentation
-- [Vercel AI Playground](https://sdk.vercel.ai/playground) - Experiment with AI models
-
-## Deploy on Vercel
-
-The easiest way to deploy your AI application is using the [Vercel Platform](https://vercel.com).
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/ai-sdk-fundamentals-starter)

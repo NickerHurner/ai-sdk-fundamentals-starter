@@ -1,0 +1,6 @@
+{
+  "name": "AI SDK Tutorial",
+  "description": "Interactive Android tutorial for AI features: Structured Extraction, Ticket Classification, Conversation Summarization, and Chatbot with Tool Calling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
